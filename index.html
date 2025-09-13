@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Menu Selection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Page -->
+        <div class="page active" id="mainPage">
+            <div class="header">
+                <h1>Party Menu Selection</h1>
+                <p>Choose delicious dishes for your upcoming party</p>
+            </div>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search for dishes...">
+                </div>
+                <div class="filter-container">
+                    <div class="filter-btn active" id="vegFilter">
+                        <i class="fas fa-leaf"></i> Veg
+                    </div>
+                    <div class="filter-btn active" id="nonVegFilter">
+                        <i class="fas fa-drumstick-bite"></i> Non-Veg
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-tabs">
+                <div class="tab active" data-category="all" id="allTab">
+                    <span>All Dishes</span>
+                    <span class="count">8</span>
+                </div>
+                <div class="tab" data-category="starter" id="starterTab">
+                    <i class="fas fa-utensils"></i>
+                    <span>Starters</span>
+                    <span class="count">2</span>
+                </div>
+                <div class="tab" data-category="main" id="mainTab">
+                    <i class="fas fa-utensil-spoon"></i>
+                    <span>Main Course</span>
+                    <span class="count">2</span>
+                </div>
+                <div class="tab" data-category="dessert" id="dessertTab">
+                    <i class="fas fa-ice-cream"></i>
+                    <span>Desserts</span>
+                    <span class="count">2</span>
+                </div>
+                <div class="tab" data-category="sides" id="sidesTab">
+                    <i class="fas fa-cheese"></i>
+                    <span>Sides</span>
+                    <span class="count">2</span>
+                </div>
+            </div>
+            
+            <div class="dishes-container" id="dishesContainer">
+                <!-- Dishes will be loaded here -->
+            </div>
+            
+            <div class="summary-container">
+                <h2 class="summary-title">Selection Summary</h2>
+                <div class="category-summary">
+                    <div class="summary-item">
+                        <div class="name">Starters</div>
+                        <div class="count">0</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="name">Main Course</div>
+                        <div class="count">0</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="name">Desserts</div>
+                        <div class="count">0</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="name">Sides</div>
+                        <div class="count">0</div>
+                    </div>
+                </div>
+                <div class="total-summary">
+                    <div class="label">Total Selected Dishes</div>
+                    <div class="count">0</div>
+                </div>
+            </div>
+            
+            <button class="continue-btn">
+                <i class="fas fa-check-circle"></i> Continue with Selection
+            </button>
+        </div>
+
+        <!-- Category Pages -->
+        <div class="page" id="allDishesPage">
+            <div class="page-header">
+                <button class="back-button" onclick="showPage('mainPage')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="page-title">All Dishes</h2>
+            </div>
+            <div class="dishes-container" id="allDishesContainer">
+                <!-- All dishes will be loaded here -->
+            </div>
+        </div>
+
+        <div class="page" id="starterPage">
+            <div class="page-header">
+                <button class="back-button" onclick="showPage('mainPage')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="page-title">Starter Dishes</h2>
+            </div>
+            <div class="dishes-container" id="starterDishesContainer">
+                <!-- Starter dishes will be loaded here -->
+            </div>
+        </div>
+
+        <div class="page" id="mainCoursePage">
+            <div class="page-header">
+                <button class="back-button" onclick="showPage('mainPage')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="page-title">Main Course Dishes</h2>
+            </div>
+            <div class="dishes-container" id="mainCourseDishesContainer">
+                <!-- Main course dishes will be loaded here -->
+            </div>
+        </div>
+
+        <div class="page" id="dessertPage">
+            <div class="page-header">
+                <button class="back-button" onclick="showPage('mainPage')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="page-title">Dessert Dishes</h2>
+            </div>
+            <div class="dishes-container" id="dessertDishesContainer">
+                <!-- Dessert dishes will be loaded here -->
+            </div>
+        </div>
+
+        <div class="page" id="sidesPage">
+            <div class="page-header">
+                <button class="back-button" onclick="showPage('mainPage')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="page-title">Side Dishes</h2>
+            </div>
+            <div class="dishes-container" id="sidesDishesContainer">
+                <!-- Side dishes will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Veg/Non-Veg Pages -->
+        <div class="page" id="vegPage">
+            <div class="page-header">
+                <button class="back-button" onclick="showPage('mainPage')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="page-title">Vegetarian Dishes</h2>
+            </div>
+            <div class="dishes-container" id="vegDishesContainer">
+                <!-- Veg dishes will be loaded here -->
+            </div>
+        </div>
+
+        <div class="page" id="nonVegPage">
+            <div class="page-header">
+                <button class="back-button" onclick="showPage('mainPage')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="page-title">Non-Vegetarian Dishes</h2>
+            </div>
+            <div class="dishes-container" id="nonVegDishesContainer">
+                <!-- Non-veg dishes will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="ingredient-modal" id="ingredientModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalDishName">Dish Name</h2>
+                <p class="modal-desc" id="modalDishDesc">Dish description goes here</p>
+                <div class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Ingredients</h3>
+                <ul class="ingredient-list" id="ingredientList">
+                    <!-- Ingredients will be added here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data for dishes
+        const dishes = [
+            {
+                id: 1,
+                name: "Bruschetta",
+                description: "Toasted bread topped with fresh tomatoes, garlic, and basil",
+                category: "starter",
+                isVeg: true,
+                image: "https://images.unsplash.com/photo-1572695157366-5e585ab2b4f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Bread slices", quantity: "4 pieces" },
+                    { name: "Tomatoes", quantity: "2 medium" },
+                    { name: "Garlic", quantity: "2 cloves" },
+                    { name: "Basil leaves", quantity: "5-6 leaves" },
+                    { name: "Olive oil", quantity: "2 tbsp" }
+                ]
+            },
+            {
+                id: 2,
+                name: "Chicken Wings",
+                description: "Spicy grilled chicken wings with secret sauce",
+                category: "starter",
+                isVeg: false,
+                image: "https://images.unsplash.com/photo-1567620836586-f6c0c0c6b344?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Chicken wings", quantity: "10 pieces" },
+                    { name: "Hot sauce", quantity: "3 tbsp" },
+                    { name: "Butter", quantity: "2 tbsp" },
+                    { name: "Garlic powder", quantity: "1 tsp" }
+                ]
+            },
+            {
+                id: 3,
+                name: "Grilled Salmon",
+                description: "Fresh salmon fillet with herbs and lemon",
+                category: "main",
+                isVeg: false,
+                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Salmon fillet", quantity: "2 pieces" },
+                    { name: "Lemon", quantity: "1" },
+                    { name: "Olive oil", quantity: "2 tbsp" },
+                    { name: "Dill", quantity: "1 tbsp" },
+                    { name: "Garlic", quantity: "2 cloves" }
+                ]
+            },
+            {
+                id: 4,
+                name: "Vegetable Lasagna",
+                description: "Layers of pasta with roasted vegetables and cheese",
+                category: "main",
+                isVeg: true,
+                image: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Lasagna sheets", quantity: "12 pieces" },
+                    { name: "Mixed vegetables", quantity: "3 cups" },
+                    { name: "Tomato sauce", quantity: "2 cups" },
+                    { name: "Mozzarella cheese", quantity: "200g" },
+                    { name: "Ricotta cheese", quantity: "1 cup" }
+                ]
+            },
+            {
+                id: 5,
+                name: "Chocolate Mousse",
+                description: "Rich and creamy chocolate dessert",
+                category: "dessert",
+                isVeg: true,
+                image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Dark chocolate", quantity: "200g" },
+                    { name: "Heavy cream", quantity: "1 cup" },
+                    { name: "Egg whites", quantity: "2" },
+                    { name: "Sugar", quantity: "2 tbsp" },
+                    { name: "Vanilla extract", quantity: "1 tsp" }
+                ]
+            },
+            {
+                id: 6,
+                name: "Cheesecake",
+                description: "Creamy cheesecake with berry compote",
+                category: "dessert",
+                isVeg: true,
+                image: "https://images.unsplash.com/photo-1524351199678-941a58a3df50?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Cream cheese", quantity: "500g" },
+                    { name: "Graham crackers", quantity: "200g" },
+                    { name: "Butter", quantity: "100g" },
+                    { name: "Sugar", quantity: "1 cup" },
+                    { name: "Eggs", quantity: "3" }
+                ]
+            },
+            {
+                id: 7,
+                name: "Garlic Bread",
+                description: "Toasted bread with garlic and herb butter",
+                category: "sides",
+                isVeg: true,
+                image: "https://images.unsplash.com/photo-1573140247636-bf3515c2ddab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Baguette", quantity: "1" },
+                    { name: "Butter", quantity: "100g" },
+                    { name: "Garlic", quantity: "4 cloves" },
+                    { name: "Parsley", quantity: "2 tbsp" }
+                ]
+            },
+            {
+                id: 8,
+                name: "Caesar Salad",
+                description: "Fresh romaine lettuce with Caesar dressing",
+                category: "sides",
+                isVeg: false,
+                image: "https://images.unsplash.com/photo-1551248429-40975aa4de74?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+                ingredients: [
+                    { name: "Romaine lettuce", quantity: "1 head" },
+                    { name: "Parmesan cheese", quantity: "50g" },
+                    { name: "Croutons", quantity: "1 cup" },
+                    { name: "Caesar dressing", quantity: "3 tbsp" },
+                    { name: "Anchovies", quantity: "4 fillets" }
+                ]
+            }
+        ];
+
+        // Global variables
+        let selectedDishes = {};
+        let currentCategory = 'all';
+        let showVeg = true;
+        let showNonVeg = true;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initApp();
+        });
+
+        function initApp() {
+            // Set up event listeners
+            document.getElementById('vegFilter').addEventListener('click', toggleVegFilter);
+            document.getElementById('nonVegFilter').addEventListener('click', toggleNonVegFilter);
+            document.getElementById('searchInput').addEventListener('input', filterDishes);
+            document.getElementById('closeModal').addEventListener('click', closeIngredientModal);
+            
+            // Set up category tab clicks
+            document.getElementById('allTab').addEventListener('click', function() {
+                showPage('allDishesPage');
+                renderDishes('all', 'allDishesContainer');
+            });
+            
+            document.getElementById('starterTab').addEventListener('click', function() {
+                showPage('starterPage');
+                renderDishes('starter', 'starterDishesContainer');
+            });
+            
+            document.getElementById('mainTab').addEventListener('click', function() {
+                showPage('mainCoursePage');
+                renderDishes('main', 'mainCourseDishesContainer');
+            });
+            
+            document.getElementById('dessertTab').addEventListener('click', function() {
+                showPage('dessertPage');
+                renderDishes('dessert', 'dessertDishesContainer');
+            });
+            
+            document.getElementById('sidesTab').addEventListener('click', function() {
+                showPage('sidesPage');
+                renderDishes('sides', 'sidesDishesContainer');
+            });
+
+            // Set up veg/non-veg filter clicks for navigation
+            document.getElementById('vegFilter').addEventListener('dblclick', function() {
+                showPage('vegPage');
+                renderDishesByType(true, 'vegDishesContainer');
+            });
+            
+            document.getElementById('nonVegFilter').addEventListener('dblclick', function() {
+                showPage('nonVegPage');
+                renderDishesByType(false, 'nonVegDishesContainer');
+            });
+
+            // Load initial dishes
+            renderDishes('all', 'dishesContainer');
+            updateSelectionSummary();
+        }
+
+        function renderDishes(category, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filteredDishes = dishes.filter(dish => {
+                // Category filter
+                if (category !== 'all' && dish.category !== category) return false;
+                
+                // Veg/Non-veg filter
+                if ((dish.isVeg && !showVeg) || (!dish.isVeg && !showNonVeg)) return false;
+                
+                // Search filter
+                if (searchTerm && !dish.name.toLowerCase().includes(searchTerm)) return false;
+                
+                return true;
+            });
+            
+            if (filteredDishes.length === 0) {
+                container.innerHTML = '<div class="no-dishes">No dishes found matching your criteria.</div>';
+                return;
+            }
+            
+            filteredDishes.forEach(dish => {
+                const dishElement = createDishElement(dish);
+                container.appendChild(dishElement);
+            });
+        }
+
+        function renderDishesByType(isVeg, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            const filteredDishes = dishes.filter(dish => dish.isVeg === isVeg);
+            
+            if (filteredDishes.length === 0) {
+                container.innerHTML = '<div class="no-dishes">No dishes found matching your criteria.</div>';
+                return;
+            }
+            
+            filteredDishes.forEach(dish => {
+                const dishElement = createDishElement(dish);
+                container.appendChild(dishElement);
+            });
+        }
+
+        function createDishElement(dish) {
+            const dishCard = document.createElement('div');
+            dishCard.className = 'dish-card';
+            
+            dishCard.innerHTML = `
+                <img src="${dish.image}" alt="${dish.name}" class="dish-image">
+                <div class="dish-content">
+                    <h3 class="dish-title">${dish.name} ${dish.isVeg ? '<i class="fas fa-leaf" style="color:green"></i>' : '<i class="fas fa-drumstick-bite" style="color:red"></i>'}</h3>
+                    <p class="dish-desc">${dish.description}</p>
+                    <div class="dish-actions">
+                        <button class="add-btn ${selectedDishes[dish.id] ? 'added' : ''}" data-id="${dish.id}">
+                            <i class="fas ${selectedDishes[dish.id] ? 'fa-check' : 'fa-plus'}"></i>
+                            ${selectedDishes[dish.id] ? 'Added' : 'Add'}
+                        </button>
+                        <button class="ingredient-btn" data-id="${dish.id}">
+                            <i class="fas fa-list"></i> Ingredients
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add event listeners to buttons
+            dishCard.querySelector('.add-btn').addEventListener('click', function() {
+                toggleDishSelection(dish.id);
+            });
+            
+            dishCard.querySelector('.ingredient-btn').addEventListener('click', function() {
+                showIngredientModal(dish.id);
+            });
+            
+            return dishCard;
+        }
+
+        function toggleDishSelection(dishId) {
+            selectedDishes[dishId] = !selectedDishes[dishId];
+            updateSelectionSummary();
+            renderDishes(currentCategory, 'dishesContainer');
+        }
+
+        function updateSelectionSummary() {
+            // Reset counts
+            const categoryCounts = {
+                starter: 0,
+                main: 0,
+                dessert: 0,
+                sides: 0
+            };
+            
+            // Count selected dishes by category
+            Object.keys(selectedDishes).forEach(id => {
+                if (selectedDishes[id]) {
+                    const dish = dishes.find(d => d.id == id);
+                    if (dish && categoryCounts.hasOwnProperty(dish.category)) {
+                        categoryCounts[dish.category]++;
+                    }
+                }
+            });
+            
+            // Update UI
+            document.querySelectorAll('.summary-item').forEach(item => {
+                const category = item.querySelector('.name').textContent.toLowerCase();
+                if (categoryCounts.hasOwnProperty(category)) {
+                    item.querySelector('.count').textContent = categoryCounts[category];
+                }
+            });
+            
+            // Update total count
+            const totalCount = Object.values(selectedDishes).filter(Boolean).length;
+            document.querySelector('.total-summary .count').textContent = totalCount;
+            
+            // Update tab counts
+            document.getElementById('starterTab').querySelector('.count').textContent = categoryCounts.starter;
+            document.getElementById('mainTab').querySelector('.count').textContent = categoryCounts.main;
+            document.getElementById('dessertTab').querySelector('.count').textContent = categoryCounts.dessert;
+            document.getElementById('sidesTab').querySelector('.count').textContent = categoryCounts.sides;
+            document.getElementById('allTab').querySelector('.count').textContent = totalCount;
+        }
+
+        function toggleVegFilter() {
+            showVeg = !showVeg;
+            document.getElementById('vegFilter').classList.toggle('active', showVeg);
+            renderDishes(currentCategory, 'dishesContainer');
+        }
+
+        function toggleNonVegFilter() {
+            showNonVeg = !showNonVeg;
+            document.getElementById('nonVegFilter').classList.toggle('active', showNonVeg);
+            renderDishes(currentCategory, 'dishesContainer');
+        }
+
+        function filterDishes() {
+            renderDishes(currentCategory, 'dishesContainer');
+        }
+
+        function showIngredientModal(dishId) {
+            const dish = dishes.find(d => d.id == dishId);
+            if (!dish) return;
+            
+            document.getElementById('modalDishName').textContent = dish.name;
+            document.getElementById('modalDishDesc').textContent = dish.description;
+            
+            const ingredientList = document.getElementById('ingredientList');
+            ingredientList.innerHTML = '';
+            
+            dish.ingredients.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.className = 'ingredient-item';
+                li.innerHTML = `
+                    <span class="ingredient-name">${ingredient.name}</span>
+                    <span class="ingredient-quantity">${ingredient.quantity}</span>
+                `;
+                ingredientList.appendChild(li);
+            });
+            
+            document.getElementById('ingredientModal').classList.add('active');
+        }
+
+        function closeIngredientModal() {
+            document.getElementById('ingredientModal').classList.remove('active');
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Close modal if clicked outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('ingredientModal');
+            if (event.target === modal) {
+                closeIngredientModal();
+            }
+        });
+    </script>
+</body>
+</html>
